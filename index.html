@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cashademy - Knowledge That Pays Off</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+    header { background: #2c3e50; color: #fff; padding: 20px; text-align: center; }
+    nav { background: #34495e; padding: 10px; text-align: center; }
+    nav a { color: #fff; margin: 0 15px; text-decoration: none; }
+    section { padding: 20px; }
+    h2 { color: #2c3e50; }
+    footer { background: #2c3e50; color: #fff; text-align: center; padding: 10px; margin-top: 20px; }
+    .card { background: #ecf0f1; padding: 15px; margin: 10px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Cashademy</h1>
+  <p>Knowledge That Pays Off</p>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#founders">Founders</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#strategies">Strategies</a>
+</nav>
+
+<section id="about">
+  <h2>About Cashademy</h2>
+  <p>Cashademy is a student-first platform that empowers learners to earn while they study. 
+     It offers opportunities like selling notes, tutoring, creative showcases, micro-tasks, and a preloved marketplace. 
+     With EduQuest gamification, students earn points, rewards, and discounts while engaging in learning.</p>
+</section>
+
+<section id="founders">
+  <h2>Founders</h2>
+  <div id="founders-list"></div>
+</section>
+
+<section id="pricing">
+  <h2>Pricing & Revenue</h2>
+  <div id="pricing-list"></div>
+</section>
+
+<section id="strategies">
+  <h2>Business Strategies</h2>
+  <div id="strategies-list"></div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Cashademy | Pamantasan ng Lungsod ng San Pablo</p>
+</footer>
+
+<script>
+// "Database" simulated with JSON
+const database = {
+  founders: [
+    { name: "Erika Mae Belino", role: "Systems Architect & Product Vision Lead" },
+    { name: "Ma. Daniela Busadre", role: "Operations & Partnership Development Lead" },
+    { name: "Pauline Baet", role: "Marketing & Digital Strategy Lead" },
+    { name: "Ken Robert Endino", role: "Chief Technology Officer" },
+    { name: "John Rico Damasco", role: "Innovation & Gamification Engineer" },
+    { name: "Erwell Clloyd Exconde", role: "User Interface & Experience Engineer" }
+  ],
+  pricing: [
+    { item: "Student Subscription", price: "₱99/month or ₱999/year" },
+    { item: "Seller Subscription", price: "₱199/month or ₱1,999/year" },
+    { item: "Tutoring", price: "₱99/hour (5% commission)" },
+    { item: "Other Streams", price: "Transaction fees, downloads, ads, EduQuest Premium" }
+  ],
+  strategies: [
+    "Campus-first growth with student ambassadors",
+    "Verified student security framework",
+    "Gamified retention via EduQuest",
+    "Local business collaborations",
+    "Reciprocal review system for quality",
+    "Data-driven hustle alerts",
+    "Micro-credentialing career bridge",
+    "Financial literacy integration"
+  ]
+};
+
+// Render founders
+const foundersDiv = document.getElementById("founders-list");
+database.founders.forEach(f => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `<strong>${f.name}</strong><br>${f.role}`;
+  foundersDiv.appendChild(card);
+});
+
+// Render pricing
+const pricingDiv = document.getElementById("pricing-list");
+database.pricing.forEach(p => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `<strong>${p.item}</strong>: ${p.price}`;
+  pricingDiv.appendChild(card);
+});
+
+// Render strategies
+const strategiesDiv = document.getElementById("strategies-list");
+const ul = document.createElement("ul");
+database.strategies.forEach(s => {
+  const li = document.createElement("li");
+  li.textContent = s;
+  ul.appendChild(li);
+});
+strategiesDiv.appendChild(ul);
+</script>
+
+</body>
+</html>
