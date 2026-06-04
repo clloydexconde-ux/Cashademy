@@ -2,16 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Cashademy - Knowledge That Pays Off</title>
+  <title>Cashademy Marketplace + EduQuest</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
     header { background: #2c3e50; color: #fff; padding: 20px; text-align: center; }
     nav { background: #34495e; padding: 10px; text-align: center; }
     nav a { color: #fff; margin: 0 15px; text-decoration: none; }
-    section { padding: 20px; }
-    h2 { color: #2c3e50; }
-    footer { background: #2c3e50; color: #fff; text-align: center; padding: 10px; margin-top: 20px; }
-    .card { background: #ecf0f1; padding: 15px; margin: 10px; border-radius: 5px; }
+    .container { width: 360px; margin: 20px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h2 { text-align: center; color: #2c3e50; }
+    input, select { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; }
+    button { width: 100%; padding: 10px; background: #2c3e50; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #34495e; }
+    .message { text-align: center; margin-top: 10px; }
+    #dashboard { display: none; margin-top: 20px; }
+    .points { font-weight: bold; color: green; }
+    .market { margin-top: 20px; }
+    .product { background: #ecf0f1; padding: 10px; margin: 10px; border-radius: 5px; }
+    .game { margin-top: 20px; background: #f9f9f9; padding: 15px; border-radius: 5px; }
   </style>
 </head>
 <body>
@@ -22,95 +29,159 @@
 </header>
 
 <nav>
-  <a href="#about">About</a>
-  <a href="#founders">Founders</a>
-  <a href="#pricing">Pricing</a>
-  <a href="#strategies">Strategies</a>
+  <a href="#login">Login</a>
+  <a href="#register">Register</a>
 </nav>
 
-<section id="about">
-  <h2>About Cashademy</h2>
-  <p>Cashademy is a student-first platform that empowers learners to earn while they study. 
-     It offers opportunities like selling notes, tutoring, creative showcases, micro-tasks, and a preloved marketplace. 
-     With EduQuest gamification, students earn points, rewards, and discounts while engaging in learning.</p>
-</section>
+<!-- LOGIN -->
+<div class="container" id="login">
+  <h2>Login</h2>
+  <input type="text" id="loginUser" placeholder="Username">
+  <input type="password" id="loginPass" placeholder="Password">
+  <button onclick="login()">Login</button>
+  <p class="message" id="loginMessage"></p>
+</div>
 
-<section id="founders">
-  <h2>Founders</h2>
-  <div id="founders-list"></div>
-</section>
+<!-- REGISTER -->
+<div class="container" id="register">
+  <h2>Register</h2>
+  <input type="text" id="regUser" placeholder="Choose Username">
+  <input type="password" id="regPass" placeholder="Choose Password">
+  <select id="regPlan">
+    <option value="Free">Free</option>
+    <option value="Premium">Premium</option>
+  </select>
+  <button onclick="register()">Register</button>
+  <p class="message" id="regMessage"></p>
+</div>
 
-<section id="pricing">
-  <h2>Pricing & Revenue</h2>
-  <div id="pricing-list"></div>
-</section>
+<!-- DASHBOARD -->
+<div class="container" id="dashboard">
+  <h2>EduQuest Dashboard</h2>
+  <p id="welcome"></p>
+  <p>Your current plan: <span id="plan"></span></p>
+  <p>Your EduQuest Points: <span class="points" id="points">0</span></p>
+  <button onclick="completeTask()">Complete Micro-task (+10 pts)</button>
+  <button onclick="sellNotes()">Sell Notes (+20 pts)</button>
+  <button onclick="tutor()">Tutoring Session (+30 pts)</button>
 
-<section id="strategies">
-  <h2>Business Strategies</h2>
-  <div id="strategies-list"></div>
-</section>
+  <!-- EduQuest Games -->
+  <div class="game">
+    <h3>EduQuest Mini-Games</h3>
 
-<footer>
-  <p>&copy; 2025 Cashademy | Pamantasan ng Lungsod ng San Pablo</p>
-</footer>
+    <!-- Game 1: Guess the Number -->
+    <h4>Game 1: Guess the Number (3–5)</h4>
+    <input type="number" id="guess" placeholder="Enter 3, 4, or 5">
+    <button onclick="playGuess()">Play</button>
+    <p id="guessMessage"></p>
+
+    <!-- Game 2: Quick Math -->
+    <h4>Game 2: Quick Math</h4>
+    <p id="mathQuestion"></p>
+    <input type="number" id="mathAnswer" placeholder="Your Answer">
+    <button onclick="playMath()">Submit</button>
+    <p id="mathMessage"></p>
+
+    <!-- Game 3: Word Scramble -->
+    <h4>Game 3: Word Scramble</h4>
+    <p id="scrambleWord"></p>
+    <input type="text" id="scrambleAnswer" placeholder="Unscramble">
+    <button onclick="playScramble()">Submit</button>
+    <p id="scrambleMessage"></p>
+
+    <!-- Game 4: Trivia -->
+    <h4>Game 4: Trivia</h4>
+    <p id="triviaQuestion"></p>
+    <input type="text" id="triviaAnswer" placeholder="Your Answer">
+    <button onclick="playTrivia()">Submit</button>
+    <p id="triviaMessage"></p>
+  </div>
+
+  <!-- Marketplace -->
+  <div class="market">
+    <h2>Marketplace</h2>
+    <h3>Add Product (Seller)</h3>
+    <input type="text" id="prodName" placeholder="Product Name">
+    <input type="number" id="prodPrice" placeholder="Price (₱)">
+    <button onclick="addProduct()">Add Product</button>
+
+    <h3>Available Products (Buyer)</h3>
+    <div id="productList"></div>
+  </div>
+</div>
 
 <script>
-// "Database" simulated with JSON
-const database = {
-  founders: [
-    { name: "Erika Mae Belino", role: "Systems Architect & Product Vision Lead" },
-    { name: "Ma. Daniela Busadre", role: "Operations & Partnership Development Lead" },
-    { name: "Pauline Baet", role: "Marketing & Digital Strategy Lead" },
-    { name: "Ken Robert Endino", role: "Chief Technology Officer" },
-    { name: "John Rico Damasco", role: "Innovation & Gamification Engineer" },
-    { name: "Erwell Clloyd Exconde", role: "User Interface & Experience Engineer" }
-  ],
-  pricing: [
-    { item: "Student Subscription", price: "₱99/month or ₱999/year" },
-    { item: "Seller Subscription", price: "₱199/month or ₱1,999/year" },
-    { item: "Tutoring", price: "₱99/hour (5% commission)" },
-    { item: "Other Streams", price: "Transaction fees, downloads, ads, EduQuest Premium" }
-  ],
-  strategies: [
-    "Campus-first growth with student ambassadors",
-    "Verified student security framework",
-    "Gamified retention via EduQuest",
-    "Local business collaborations",
-    "Reciprocal review system for quality",
-    "Data-driven hustle alerts",
-    "Micro-credentialing career bridge",
-    "Financial literacy integration"
-  ]
-};
+// Registration
+function register() {
+  const user = document.getElementById("regUser").value;
+  const pass = document.getElementById("regPass").value;
+  const plan = document.getElementById("regPlan").value;
 
-// Render founders
-const foundersDiv = document.getElementById("founders-list");
-database.founders.forEach(f => {
-  const card = document.createElement("div");
-  card.className = "card";
-  card.innerHTML = `<strong>${f.name}</strong><br>${f.role}`;
-  foundersDiv.appendChild(card);
-});
+  if(localStorage.getItem(user)) {
+    document.getElementById("regMessage").textContent = "❌ Username already exists!";
+    document.getElementById("regMessage").style.color = "red";
+  } else {
+    const account = { password: pass, plan: plan, points: 0, products: [] };
+    localStorage.setItem(user, JSON.stringify(account));
+    document.getElementById("regMessage").textContent = "✅ Registration successful! (" + plan + " plan)";
+    document.getElementById("regMessage").style.color = "green";
+  }
+}
 
-// Render pricing
-const pricingDiv = document.getElementById("pricing-list");
-database.pricing.forEach(p => {
-  const card = document.createElement("div");
-  card.className = "card";
-  card.innerHTML = `<strong>${p.item}</strong>: ${p.price}`;
-  pricingDiv.appendChild(card);
-});
+// Login
+function login() {
+  const user = document.getElementById("loginUser").value;
+  const pass = document.getElementById("loginPass").value;
 
-// Render strategies
-const strategiesDiv = document.getElementById("strategies-list");
-const ul = document.createElement("ul");
-database.strategies.forEach(s => {
-  const li = document.createElement("li");
-  li.textContent = s;
-  ul.appendChild(li);
-});
-strategiesDiv.appendChild(ul);
-</script>
+  const accountData = localStorage.getItem(user);
+  if(accountData) {
+    const account = JSON.parse(accountData);
+    if(account.password === pass) {
+      document.getElementById("loginMessage").textContent = "✅ Login successful!";
+      document.getElementById("loginMessage").style.color = "green";
+      showDashboard(user, account);
+    } else {
+      document.getElementById("loginMessage").textContent = "❌ Incorrect password.";
+      document.getElementById("loginMessage").style.color = "red";
+    }
+  } else {
+    document.getElementById("loginMessage").textContent = "❌ User not found.";
+    document.getElementById("loginMessage").style.color = "red";
+  }
+}
 
-</body>
-</html>
+function showDashboard(user, account) {
+  document.getElementById("dashboard").style.display = "block";
+  document.getElementById("welcome").textContent = "Welcome, " + user + "!";
+  document.getElementById("plan").textContent = account.plan;
+  document.getElementById("points").textContent = account.points;
+  localStorage.setItem("currentUser", user);
+  renderProducts();
+}
+
+// Points
+function updatePoints(amount) {
+  const user = localStorage.getItem("currentUser");
+  const account = JSON.parse(localStorage.getItem(user));
+  account.points += amount;
+  localStorage.setItem(user, JSON.stringify(account));
+  document.getElementById("points").textContent = account.points;
+}
+
+function completeTask() { updatePoints(10); }
+function sellNotes() { updatePoints(20); }
+function tutor() { updatePoints(30); }
+
+// Game 1: Guess Number
+function playGuess() {
+  const guess = parseInt(document.getElementById("guess").value);
+  const randomNum = Math.floor(Math.random() * 3) + 3;
+  if(guess === randomNum) {
+    document.getElementById("guessMessage").textContent = "🎉 Correct! +15 pts";
+    updatePoints(15);
+  } else {
+    document.getElementById("guessMessage").textContent = "❌ Wrong! Number was " + randomNum;
+  }
+}
+
+// Game 2: Quick Math
