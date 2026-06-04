@@ -185,3 +185,43 @@ function playGuess() {
 }
 
 // Game 2: Quick Math
+let a = Math.floor(Math.random()*10), b = Math.floor(Math.random()*10);
+document.getElementById("mathQuestion").textContent = `What is ${a} + ${b}?`;
+function playMath() {
+  const ans = parseInt(document.getElementById("mathAnswer").value);
+  if(ans === a+b) {
+    document.getElementById("mathMessage").textContent = "✅ Correct! +20 pts";
+    updatePoints(20);
+  } else {
+    document.getElementById("mathMessage").textContent = "❌ Wrong! Answer was " + (a+b);
+  }
+}
+
+// Game 3: Word Scramble
+const words = ["cash", "study", "notes", "quest"];
+const word = words[Math.floor(Math.random()*words.length)];
+const scrambled = word.split("").sort(()=>0.5-Math.random()).join("");
+document.getElementById("scrambleWord").textContent = "Unscramble: " + scrambled;
+function playScramble() {
+  const ans = document.getElementById("scrambleAnswer").value.toLowerCase();
+  if(ans === word) {
+    document.getElementById("scrambleMessage").textContent = "🎉 Correct! +25 pts";
+    updatePoints(25);
+  } else {
+    document.getElementById("scrambleMessage").textContent = "❌ Wrong! Word was " + word;
+  }
+}
+
+// Game 4: Trivia
+const triviaQ = "What city is Cashademy based in?";
+document.getElementById("triviaQuestion").textContent = triviaQ;
+function playTrivia() {
+  const ans = document.getElementById("triviaAnswer").value.toLowerCase();
+  if(ans.includes("san pablo")) {
+    document.getElementById("triviaMessage").textContent = "✅ Correct! +30 pts";
+    updatePoints(30);
+  } else {
+    document.getElementById("triviaMessage").textContent = "❌ Wrong! Answer: San Pablo City";
+  }
+}
+</script>
