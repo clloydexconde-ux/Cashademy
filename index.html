@@ -2,23 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Cashademy Marketplace + EduQuest</title>
+  <title>Cashademy Login & Register</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
-    header { background: #2c3e50; color: #fff; padding: 20px; text-align: center; }
-    nav { background: #34495e; padding: 10px; text-align: center; }
-    nav a { color: #fff; margin: 0 15px; text-decoration: none; }
-    .container { width: 360px; margin: 20px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    h2 { text-align: center; color: #2c3e50; }
-    input, select { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; }
-    button { width: 100%; padding: 10px; background: #2c3e50; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
-    button:hover { background: #34495e; }
-    .message { text-align: center; margin-top: 10px; }
-    #dashboard { display: none; margin-top: 20px; }
-    .points { font-weight: bold; color: green; }
-    .market { margin-top: 20px; }
-    .product { background: #ecf0f1; padding: 10px; margin: 10px; border-radius: 5px; }
-    .game { margin-top: 20px; background: #f9f9f9; padding: 15px; border-radius: 5px; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #2ecc71, #3498db); /* green → blue */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .wrapper {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+    .brand {
+      color: #fff;
+      max-width: 300px;
+    }
+    .brand h1 {
+      font-size: 48px;
+      margin: 0;
+    }
+    .brand p {
+      font-size: 18px;
+    }
+    .form-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      width: 350px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    .register-btn {
+      background: #2ecc71;
+      margin-top: 10px;
+    }
+    .register-btn:hover {
+      background: #27ae60;
+    }
+    .message {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
